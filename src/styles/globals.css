@@ -1772,3 +1772,364 @@ h3 {
   clip: rect(0 0 0 0);
   white-space: nowrap;
 }
+
+/* ===========================================================================
+   T20 BLACK GLASS LAYER
+   ---------------------------------------------------------------------------
+   The stylesheet above is written entirely against tokens, so flipping
+   themeConfig.ts to the black skin already inverts the palette. This layer
+   adds the thing tokens alone can't express: the *material*.
+
+   Every content surface becomes a frosted-glass pane — translucent fill,
+   backdrop blur, a lit 1px hairline, and a soft drop shadow — so panes float
+   over the black canvas and the hero video reads through the chrome.
+
+   Kept as a separate, clearly-marked block so it can be lifted out wholesale
+   if a future SportsWeb site wants the flat light skin back.
+   =========================================================================== */
+
+/* ---- The material ------------------------------------------------------- */
+.glass,
+.fmatch,
+.mcard,
+.club,
+.ladder,
+.chcard,
+.ncard,
+.stcard,
+.fhcard,
+.jcard,
+.mc__mod,
+.mc__scorecard,
+.fpost {
+  background: var(--glass-fill);
+  backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+  border: 1px solid var(--glass-stroke);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 0 var(--glass-highlight);
+  color: var(--color-text);
+}
+
+/* Hover lift — panes catch more light as they rise */
+.fmatch:hover,
+.mcard:hover,
+.club:hover,
+.ncard:hover,
+.stcard:hover,
+.chcard:hover,
+.fhcard:hover,
+.jcard:hover {
+  background: var(--glass-fill-strong);
+  border-color: color-mix(in srgb, var(--color-accent) 45%, transparent);
+  transform: translateY(-2px);
+}
+
+/* Panes that sat on white sub-surfaces */
+.fmatch__foot {
+  background: rgba(255, 255, 255, 0.03);
+  border-top: 1px solid var(--glass-stroke);
+}
+.section--tint {
+  background: linear-gradient(180deg, #050506 0%, #000 100%);
+}
+.splogo {
+  background: rgba(255, 255, 255, 0.92); /* sponsor marks need a light plate */
+  border: 1px solid var(--glass-stroke);
+}
+.jqr__code {
+  background: #fff;
+}
+
+/* Sections are all dark now — normalise the two variants */
+.section--dark {
+  background: #000;
+}
+
+/* ---- Hero: black veil, not navy ----------------------------------------- */
+.hero__overlay {
+  background:
+    radial-gradient(120% 90% at 15% 100%, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.55) 45%, rgba(0, 0, 0, 0.25) 70%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.15) 30%, #000 100%);
+}
+
+/* ---- Chrome: heavier glass so content scrolls under it cleanly ----------- */
+.header {
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border-bottom: 1px solid var(--glass-stroke);
+}
+.quicknav {
+  background: rgba(8, 8, 10, 0.82);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border-top: 1px solid var(--glass-stroke);
+}
+.drawer {
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(28px) saturate(140%);
+  -webkit-backdrop-filter: blur(28px) saturate(140%);
+}
+.footer {
+  background: #000;
+  border-top: 1px solid var(--glass-stroke);
+}
+
+/* ---- Ladder: glass rows, lime-lit finals cut-off ------------------------- */
+.ladder__row--head {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--color-text-muted);
+}
+.ladder__row {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.ladder__row:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+.ladder__row--top4 {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--color-accent) 10%, transparent), transparent 55%);
+  box-shadow: inset 3px 0 0 0 var(--color-accent);
+}
+.ladder__row--top4 .ladder__pos {
+  color: var(--color-accent);
+}
+
+/* ---- Buttons ------------------------------------------------------------ */
+.btn--accent {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  border: 1px solid transparent;
+}
+.btn--accent:hover {
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--color-accent) 28%, transparent);
+  transform: translateY(-1px);
+}
+.btn--ghost {
+  background: var(--glass-fill);
+  color: #fff;
+  border: 1px solid var(--glass-stroke);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.btn--ghost:hover {
+  background: var(--glass-fill-strong);
+  border-color: color-mix(in srgb, var(--color-accent) 50%, transparent);
+}
+.btn--primary {
+  background: var(--glass-fill-strong);
+  color: #fff;
+  border: 1px solid var(--glass-stroke);
+}
+
+/* ---- LIVE state --------------------------------------------------------- */
+.badge--live {
+  background: var(--color-secondary);
+  color: #fff;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-secondary) 20%, transparent);
+}
+
+/* ===========================================================================
+   LIVE TICKER — scrolling score strip above the header (see LiveTicker.tsx)
+   =========================================================================== */
+.ticker {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 38px;
+  background: #000;
+  border-bottom: 1px solid var(--glass-stroke);
+  overflow: hidden;
+}
+.ticker__tag {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 100%;
+  padding: 0 12px;
+  background: var(--color-secondary);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+.ticker__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff;
+  animation: tickerPulse 1.2s ease-in-out infinite;
+}
+@keyframes tickerPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+.ticker__track {
+  display: flex;
+  white-space: nowrap;
+  animation: tickerScroll 48s linear infinite;
+  will-change: transform;
+}
+.ticker:hover .ticker__track,
+.ticker:focus-within .ticker__track {
+  animation-play-state: paused;
+}
+@keyframes tickerScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.ticker__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 18px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.75);
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+}
+.ticker__item b {
+  color: #fff;
+  font-weight: 700;
+}
+.ticker__grade {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--color-accent);
+  text-transform: uppercase;
+}
+.ticker__note {
+  color: var(--color-text-muted);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ticker__track { animation: none; }
+  .ticker { overflow-x: auto; }
+}
+
+/* ===========================================================================
+   BALL TRACK — last-six-deliveries beads (see BallTrack.tsx)
+   =========================================================================== */
+.balltrack {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.balltrack__ball {
+  width: 26px;
+  height: 26px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--glass-stroke);
+  color: rgba(255, 255, 255, 0.8);
+}
+.balltrack__ball--four {
+  background: var(--color-accent-2);
+  border-color: var(--color-accent-2);
+  color: var(--color-on-accent);
+}
+.balltrack__ball--six {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-on-accent);
+}
+.balltrack__ball--wicket {
+  background: var(--color-secondary);
+  border-color: var(--color-secondary);
+  color: #fff;
+}
+
+/* ---- Safari / older browsers: no backdrop-filter → solid dark fallback --- */
+@supports not (backdrop-filter: blur(1px)) {
+  .glass,
+  .fmatch,
+  .mcard,
+  .club,
+  .ladder,
+  .chcard,
+  .ncard,
+  .stcard,
+  .fhcard,
+  .jcard,
+  .mc__mod,
+  .mc__scorecard,
+  .fpost,
+  .header,
+  .quicknav,
+  .drawer {
+    background: #101014;
+  }
+}
+
+/* ===========================================================================
+   BRAND MARKS — BBT20 shield + RDCA roundel
+   ---------------------------------------------------------------------------
+   Both logos are full-colour (red/navy/white) on transparent, so they sit on
+   black without a plate. No filters, no recolouring — the marks are the one
+   place the brand should appear exactly as supplied.
+
+   `.brand__mark` (the old text "T20" tile) is now unused but left in place:
+   a future SportsWeb site with no logo asset can fall back to it.
+   =========================================================================== */
+.brand__logo {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  object-fit: contain;
+  /* Lifts the shield off pure black — it has a dark navy outline that would
+     otherwise disappear into the background. */
+  filter: drop-shadow(0 2px 10px rgba(255, 255, 255, 0.14));
+}
+.brand__logo--lg {
+  width: 64px;
+  height: 64px;
+}
+
+/* Association endorsement lockup in the footer */
+.footer__assoc {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  background: var(--glass-fill);
+  border: 1px solid var(--glass-stroke);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  transition: background 0.15s ease, border-color 0.15s ease;
+  max-width: 340px;
+}
+.footer__assoc:hover {
+  background: var(--glass-fill-strong);
+  border-color: color-mix(in srgb, var(--color-accent) 45%, transparent);
+}
+.footer__assoc img {
+  width: 52px;
+  height: 52px;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+.footer__assoc span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--color-text-muted);
+}
+.footer__assoc strong {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}

@@ -12,6 +12,7 @@ import type { ReactNode } from "react";
 import { Header } from "../components/core/Header";
 import { Footer } from "../components/core/Footer";
 import { MobileQuickNav } from "../components/core/MobileQuickNav";
+import { LiveTicker } from "../components/sports/LiveTicker";
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -21,6 +22,9 @@ export function MainLayout({ children }: MainLayoutProps) {
   return (
     <div className="app has-quicknav">
       <a className="skip-link" href="#main">Skip to content</a>
+      {/* Always-on live score strip — sits above the sticky header so scores
+          are the first thing on every page, app-style. */}
+      <LiveTicker />
       <Header />
       <main id="main">{children}</main>
       <Footer />

@@ -4,6 +4,7 @@
  * and the "Powered by SportsWeb One / T20 OS" credit (brief 11.14).
  */
 import { siteConfig } from "../../config/siteConfig";
+import { assets } from "../../config/mediaConfig";
 import { Icon, type IconName } from "./Icon";
 
 const quickLinks = [
@@ -43,10 +44,35 @@ export function Footer() {
         <div className="footer__grid">
           <div className="footer__brand">
             <span className="brand">
-              <span className="brand__mark" aria-hidden="true">T20</span>
+              <img
+                className="brand__logo brand__logo--lg"
+                src={assets.bbt20Logo}
+                alt=""
+                aria-hidden="true"
+                width={64}
+                height={64}
+              />
               <span className="brand__name">{siteConfig.siteName}</span>
             </span>
             <p className="footer__tagline">{siteConfig.supportingLine}</p>
+
+            {/* Association endorsement — the parent RDCA roundel sits with the
+                competition mark so the T20 site reads as an official RDCA
+                property, not a breakaway brand. */}
+            <a
+              className="footer__assoc"
+              href="https://rdca.com.au"
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`${siteConfig.associationName} — visit the main site`}
+            >
+              <img src={assets.rdcaLogo} alt="" aria-hidden="true" width={52} height={52} />
+              <span>
+                An official competition of the
+                <strong>{siteConfig.associationName}</strong>
+              </span>
+            </a>
+
             <p className="footer__powered">
               Powered by {siteConfig.poweredBy} · {siteConfig.productLayer}
             </p>

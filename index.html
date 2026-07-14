@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <!-- Black canvas: the browser chrome and the safe-area inset should
+         disappear into the page so the site reads as an installed app. -->
+    <meta name="theme-color" content="#000000" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="RDCA T20" />
+
+    <meta
+      name="description"
+      content="The RDCA T20 Blast — local cricket with Big Bash energy. Fixtures, live match centre, ladder, clubs, junior pathways, fan rewards and more. Powered by SportsWeb One."
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <!-- Preconnect to the two CDNs the first paint depends on: the hero video
+         and the Cloudinary club/sponsor logos. -->
+    <link rel="preconnect" href="https://yourbrand-18274.kxcdn.com" crossorigin />
+    <link rel="preconnect" href="https://res.cloudinary.com" crossorigin />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="RDCA T20 Blast — Local Cricket. Big Bash Energy." />
+    <meta
+      property="og:description"
+      content="Fixtures, live match centre, ladder, clubs, junior pathways and fan rewards. Powered by SportsWeb One."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="RDCA T20 Blast" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <title>RDCA T20 Blast — Local Cricket. Big Bash Energy.</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

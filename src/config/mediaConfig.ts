@@ -51,10 +51,12 @@ export const assets = {
     "v1780771648/Untitled-design---2025-01-09T100835635-m5oigune_nluqhv.png",
   ),
 
-  // TODO: replace with the real T20 Blast hero video once produced/uploaded.
-  // The VideoHero component is built to swap this for an .mp4/.webm or a
-  // Cloudinary video URL with zero markup changes.
-  heroVideo: "", // empty => VideoHero shows the fallback image (heroBackground)
+  // RDCA T20 hero cut (supplied by RDCA, served from their KeyCDN pull zone).
+  // VideoHero falls back to `heroBackground` if this is empty or fails to load.
+  // TODO: move to Cloudinary alongside the other assets so everything is on one
+  // CDN with automatic format/quality negotiation (f_auto/q_auto).
+  heroVideo:
+    "https://yourbrand-18274.kxcdn.com/lib/p53v6b/T20_Draft_rdca-1-mee1izao.mp4",
 
   // Sponsor logos (known)
   sponsors: {

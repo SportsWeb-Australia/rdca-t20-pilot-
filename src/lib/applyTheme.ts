@@ -34,6 +34,14 @@ export function applyTheme(theme: ThemeConfig = defaultTheme): void {
   set("--color-text-on-dark", theme.textOnDark);
   set("--color-border", theme.border);
 
+  // Glass system
+  set("--glass-blur", theme.glassBlur);
+  set("--glass-fill", theme.glassFill);
+  set("--glass-fill-strong", theme.glassFillStrong);
+  set("--glass-stroke", theme.glassStroke);
+  set("--glass-highlight", theme.glassHighlight);
+  set("--glass-shadow", theme.glassShadow);
+
   set("--font-display", theme.fontDisplay);
   set("--font-body", theme.fontBody);
   set("--font-mono", theme.fontMono);

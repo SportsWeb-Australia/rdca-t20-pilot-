@@ -9,7 +9,13 @@
     "isolatedModules": true,
     "moduleDetection": "force",
     "noEmit": true,
-    "strict": true
+    "strict": true,
+
+    // vite.config.ts runs in Node, not the browser: it imports `node:url` and
+    // reads `import.meta.url`. Without this, tsc type-checks it as browser code
+    // and fails with TS2307 (can't find 'node:url') + TS2339 (no 'url' on
+    // ImportMeta). Requires the @types/node devDependency.
+    "types": ["node"]
   },
   "include": ["vite.config.ts"]
 }

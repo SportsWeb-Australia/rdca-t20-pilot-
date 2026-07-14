@@ -8,6 +8,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { navigationConfig } from "../../config/navigationConfig";
 import { siteConfig } from "../../config/siteConfig";
+import { assets } from "../../config/mediaConfig";
 import { Icon } from "./Icon";
 
 export function Header() {
@@ -17,11 +18,17 @@ export function Header() {
     <header className="header">
       <div className="container header__inner">
         <NavLink to="/" className="brand" aria-label={`${siteConfig.siteName} home`}>
-          {/* TODO: replace mark with real RDCA T20 / BBT20 logo (Cloudinary) */}
-          <span className="brand__mark" aria-hidden="true">T20</span>
+          <img
+            className="brand__logo"
+            src={assets.bbt20Logo}
+            alt=""
+            aria-hidden="true"
+            width={44}
+            height={44}
+          />
           <span>
             <span className="brand__name">{siteConfig.shortName}</span>
-            <span className="brand__sub">Blast</span>
+            <span className="brand__sub">Community Big Bash</span>
           </span>
         </NavLink>
 
@@ -56,7 +63,14 @@ export function Header() {
       <div className={`drawer ${open ? "is-open" : ""}`} role="dialog" aria-modal="true" aria-hidden={!open}>
         <div className="drawer__top">
           <span className="brand">
-            <span className="brand__mark" aria-hidden="true">T20</span>
+            <img
+              className="brand__logo"
+              src={assets.bbt20Logo}
+              alt=""
+              aria-hidden="true"
+              width={44}
+              height={44}
+            />
             <span className="brand__name">{siteConfig.shortName}</span>
           </span>
           <button className="drawer__close" aria-label="Close menu" onClick={() => setOpen(false)}>

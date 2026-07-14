@@ -12,6 +12,13 @@ import { liveMatches, upcomingMatches } from "../../data/fixtures";
 import { clubById } from "../../data/clubs";
 import { Icon } from "../core/Icon";
 import { Button } from "../core/Button";
+import { BallTrack } from "./BallTrack";
+
+/**
+ * Last six deliveries of the live game.
+ * TODO: comes from the PlayHQ ball-by-ball feed — hard-coded until that's wired.
+ */
+const RECENT_DELIVERIES = ["1", "4", "6", "W", "1", "2"];
 
 export function MatchCentrePreview() {
   const live = liveMatches();
@@ -64,6 +71,13 @@ export function MatchCentrePreview() {
                 <span className="k">Status</span>
                 <span className="v">{match.result}</span>
               </span>
+            </div>
+          )}
+
+          {/* Ball-by-ball beads — only meaningful while a game is in play. */}
+          {isLive && (
+            <div style={{ marginTop: 18 }}>
+              <BallTrack deliveries={RECENT_DELIVERIES} />
             </div>
           )}
 
